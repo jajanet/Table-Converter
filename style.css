@@ -1,0 +1,18 @@
+.cell {
+    border-top: 1px solid gray;
+    padding: 2px;
+    margin-top: 13px;
+}
+
+.container {
+    text-align: center;
+    margin: 20px;
+}
+
+.search, .sort {
+    margin: 20px;
+}
+
+.invisible {
+    display: none;
+}
