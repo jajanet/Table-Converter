@@ -40,6 +40,13 @@ to be preserved for proper sorting*/
     display: none;
 }
 
+footer {
+    margin-top: 100px;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+    bottom: 0;
+}
+
 textarea {
     width: -moz-available;
     min-height: 200px;

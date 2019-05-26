@@ -7,3 +7,4 @@ The demo can be found at [https://jajanet.github.io/Table-Converter/]
 - expand support for other files
   - either detected by the web app or user-inputted
 - expand support for other stoage formats
+  - support for links
