@@ -1,3 +1,9 @@
+#buttons {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    justify-content: space-evenly;
+}
+
 .cell {
     border-top: 1px solid gray;
     padding: 2px;
@@ -6,13 +12,62 @@
 
 .container {
     text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.search, .sort, input {
     margin: 20px;
 }
 
-.search, .sort {
-    margin: 20px;
+.search {
+    border: 1px solid gray;
+    text-align: center;
+    padding: 4px;
+    width: 70%;
+    transition: .5s;
 }
 
+.search:hover {
+    opacity: .6;
+}
+
+/*used for hiding linked items that need
+to be preserved for proper sorting*/
 .invisible {
     display: none;
+}
+
+textarea {
+    width: -moz-available;
+    min-height: 200px;
+    font-size: x-small;
+    background-color: whitesmoke;
+}
+
+textarea:hover {
+    background-color: white;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+    background-color: darkslateblue;
+    transition: .5s;
+}
+
+.custom-file-upload:hover{
+    opacity: .8;
+}
+
+form {
+    display: inline;
+    vertical-align: middle;
 }
