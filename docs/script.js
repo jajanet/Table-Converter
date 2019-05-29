@@ -1,3 +1,57 @@
+/**
+ * sets the table, sort buttons, and filter text dom
+ * to what's inside the textarea to demonstrate how the program works
+*/
+function launchDemo(){
+  clearTable()
+  let demoArr = processText(document.getElementById('demo').value.replace(/(\r\n|\r\n\t|\n|\r)/gm,"\n"))
+  makeTable(demoArr)
+}
+
+/**
+ * clears the table dom, sort buttons, and filter text to default vals
+*/
+function clearTable(){
+  document.getElementById('sort-buttons').innerHTML = ""
+  document.getElementsByClassName('list')[0].innerHTML = ""
+  document.getElementsByClassName('search')[0].placeholder = "Upload a file to filter! 🔍"
+}
+
+/**
+ * modify table, sorting buttons, and filter text dom based on the
+ * 2d array and format passed into the func
+ * 
+ * list.js is used to make the data js, which can be found at:
+ * https://listjs.com/
+*/
+function makeTable(arr, format="md"){
+  let cols = [] // must track category names so the list api knows how to sort in data fields
+  let buttonStr = "" // button html used for sorting
+  let items = "" // item html str for all table items
+  // create category sorting buttons
+  for(let i = 0; i < arr[0].length; ++i){
+    let catStr = arr[0][i]
+    cols.push(catStr)
+    buttonStr += "<button class='sort btn btn-primary' data-sort='" + catStr + "'>"+ "Sort By " + catStr + "</button> "
+  }
+  arr.shift() // remove first row, which are the categories
+  // show actual items
+  for(let i = 0; i < arr.length; ++i){
+    items += "<div class='row cell'>"
+    for(let j = 0; j < arr[i].length; ++j){
+      items += "<div class='col " + cols[j] + " '>" + arr[i][j] +"</div> "
+    }
+    items += "</div> "
+  }
+  document.getElementById('sort-buttons').innerHTML = buttonStr
+  document.getElementsByClassName('list')[0].innerHTML = items
+  var options = {
+    valueNames: cols
+  };
+  let table = new List('tabled', options);
+  document.getElementsByClassName('search')[0].placeholder = "Filter " + table.size() + " Total Items 🔍"
+}
+
 /** 
  * this executes processing of a file when it's uploaded
  * 
@@ -61,42 +115,6 @@ function processMarkdown(str){
   return arr;
   }
 
-
-/**
- * modify table, sorting buttons, and filter text dom based on the
- * 2d array and format passed into the func
- * 
- * list.js is used to make the data js, which can be found at:
- * https://listjs.com/
-*/
-function makeTable(arr, format="md"){
-  let cols = [] // must track category names so the list api knows how to sort in data fields
-  let buttonStr = "" // button html used for sorting
-  let items = "" // item html str for all table items
-  // create category sorting buttons
-  for(let i = 0; i < arr[0].length; ++i){
-    let catStr = arr[0][i]
-    cols.push(catStr)
-    buttonStr += "<button class='sort btn btn-primary' data-sort='" + catStr + "'>"+ "Sort By " + catStr + "</button> "
-  }
-  arr.shift() // remove first row, which are the categories
-  // show actual items
-  for(let i = 0; i < arr.length; ++i){
-    items += "<div class='row cell'>"
-    for(let j = 0; j < arr[i].length; ++j){
-      items += "<div class='col " + cols[j] + " '>" + arr[i][j] +"</div> "
-    }
-    items += "</div> "
-  }
-  document.getElementById('sort-buttons').innerHTML = buttonStr
-  document.getElementsByClassName('list')[0].innerHTML = items
-  var options = {
-    valueNames: cols
-  };
-  let table = new List('tabled', options);
-  document.getElementsByClassName('search')[0].placeholder = "Filter " + table.size() + " Total Items 🔍"
-
-}
 
 /**
  * returns the default md table str that comes from
@@ -523,25 +541,6 @@ function getDemo(){
   | [Zuora](https://www.zuora.com/about/careers/) | Foster City, CA; Remote |
   | [Zynga](https://www.zynga.com/careers) | San Francisco, CA |
   `
-}
-
-/**
- * sets the table, sort buttons, and filter text dom
- * to what's inside the textarea to demonstrate how the program works
- */
-function launchDemo(){
-  clearTable()
-  let demoArr = processText(document.getElementById('demo').value.replace(/(\r\n|\r\n\t|\n|\r)/gm,"\n"))
-  makeTable(demoArr)
-}
-
-/**
- * clears the table dom, sort buttons, and filter text to default vals
- * */
-function clearTable(){
-  document.getElementById('sort-buttons').innerHTML = ""
-  document.getElementsByClassName('list')[0].innerHTML = ""
-  document.getElementsByClassName('search')[0].placeholder = "Upload a file to filter! 🔍"
 }
 
 /**
